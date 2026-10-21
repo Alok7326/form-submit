@@ -4,119 +4,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Dark Registration Form</title>
+
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: Arial, sans-serif;
-            background: #f3f5fb;
+            background: #18181b;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
             padding: 20px;
         }
 
         .form-container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
+            background: #27272a;
             width: 100%;
             max-width: 400px;
-            box-shadow: 0 5px 20px #00000015;
+            padding: 30px;
+            border: 1px solid #3f3f46;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
         }
 
         h2 {
             text-align: center;
-            color: #4f46e5;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 28px;
         }
 
-        label {
+        .subtitle {
+            color: #a1a1aa;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group > label {
             display: block;
-            margin-top: 15px;
-            margin-bottom: 6px;
+            color: #e4e4e7;
+            font-size: 14px;
             font-weight: bold;
+            margin-bottom: 8px;
         }
 
         input:not([type="radio"]) {
             width: 100%;
-            padding: 11px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 12px;
+            background: #18181b;
+            color: #ffffff;
+            border: 1px solid #52525b;
+            border-radius: 7px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        .gender {
+        input:not([type="radio"])::placeholder {
+            color: #71717a;
+        }
+
+        input:not([type="radio"]):focus {
+            border-color: #a1a1aa;
+            box-shadow: 0 0 0 3px rgba(161, 161, 170, 0.15);
+        }
+
+        .gender-options {
             display: flex;
             gap: 15px;
-            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .gender-options label {
+            color: #d4d4d8;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .gender-options input {
+            accent-color: #a1a1aa;
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            margin-top: 22px;
-            border: none;
-            border-radius: 6px;
-            background: #4f46e5;
-            color: white;
+            padding: 13px;
+            background: #09090b;
+            color: #ffffff;
+            border: 1px solid #52525b;
+            border-radius: 7px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.3s, transform 0.2s;
         }
 
         button:hover {
-            background: #3730a3;
+            background: #3f3f46;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 420px) {
+            .form-container {
+                padding: 22px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="form-container">
         <h2>Create Account</h2>
+        <p class="subtitle">Register your account below</p>
 
         <form id="registerForm">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name"
-                   placeholder="Enter your name" required>
 
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email"
-                   placeholder="Enter your email" required>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+            </div>
 
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone"
-                   placeholder="Enter your phone number"
-                   pattern="[0-9]{10}" maxlength="10" required>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+            </div>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"
-                   placeholder="Create a password"
-                   minlength="8" required>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter 10-digit phone number"
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    required
+                >
+            </div>
 
-            <label>Gender</label>
-            <div class="gender">
-                <label><input type="radio" name="gender"
-                       value="Male" required> Male</label>
-                <label><input type="radio" name="gender"
-                       value="Female"> Female</label>
-                <label><input type="radio" name="gender"
-                       value="Other"> Other</label>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a password"
+                    minlength="8"
+                    autocomplete="new-password"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+
+                <div class="gender-options">
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Male"
+                            required
+                        >
+                        Male
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Female"
+                        >
+                        Female
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Other"
+                        >
+                        Other
+                    </label>
+                </div>
             </div>
 
             <button type="submit">Register</button>
+
         </form>
     </div>
 
     <script>
-        document.getElementById("registerForm")
-            .addEventListener("submit", function(event) {
-                event.preventDefault();
-                alert("Registration form submitted successfully!");
-                this.reset();
-            });
+        const registerForm = document.getElementById("registerForm");
+
+        registerForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+
+            alert("Registration successful! Welcome, " + name + ".");
+
+            registerForm.reset();
+        });
     </script>
 
 </body>
